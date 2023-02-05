@@ -1,9 +1,15 @@
-import { Box } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
 import React from 'react';
+import ButtonPrimary from '../components/ButtonPrimary';
 
 const Home = () => {
     return (
-        <Box>3 Participants</Box>
+        <Box>
+            <Text>
+                Components
+            </Text>
+            <ButtonPrimary title={'Button Primary'} />
+        </Box>
     );
 }
 

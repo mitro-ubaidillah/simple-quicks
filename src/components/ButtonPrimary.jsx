@@ -8,6 +8,8 @@ const ButtonPrimary = ({title}) => {
             bg={'primary.blue'}
             px={'16px'}
             py={'14px'}
+            fontWeight={'400'}
+            fontSize={'18px'}
         >
             {title}
         </Button>

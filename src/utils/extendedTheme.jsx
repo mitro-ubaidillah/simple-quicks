@@ -9,7 +9,7 @@ const theme = extendTheme({
         primary: {
             blue: '#2F80ED',
             dark: '#4F4F4F',
-            grey: '#828282',
+            gray: '#828282',
             white: '#E0E0E0',
         },
         indicators: {
