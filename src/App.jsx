@@ -1,4 +1,6 @@
 import './App.css'
+import '@fontsource/lato/400.css'
+import '@fontsource/lato/700.css'
 import theme from './utils/ExtendedTheme'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
