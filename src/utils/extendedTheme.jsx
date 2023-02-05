@@ -12,11 +12,16 @@ const theme = extendTheme({
             gray: '#828282',
             white: '#E0E0E0',
         },
+        hover: {
+            blue: '#215dad',
+            purple: '#7372d6',
+        },
         indicators: {
             orange: '#F8B76B',
             purple: '#8785FF',
             red: '#EB5757',
             yellow: '#F2C94C',
+            white: '#F2F2F2'
         },
         chats: {
             orange: '#E5A443',
