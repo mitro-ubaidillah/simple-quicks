@@ -6,7 +6,7 @@ const Layout = ({children}) => {
         <Stack
             height={'100vh'}
             width={'full'}
-            bg={'chats.bgGreen'}
+            bg={'gray'}
         >
             {children}
         </Stack>

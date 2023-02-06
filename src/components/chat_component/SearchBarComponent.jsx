@@ -1,14 +1,14 @@
-import { Image, Input, InputGroup } from '@chakra-ui/react';
+import { Image, Input, InputGroup, InputRightElement } from '@chakra-ui/react';
 import React from 'react';
-import SearchIcon from '../assets/icons/search.png';
+import SearchIcon from '../../assets/icons/search_black.png';
 
-const SearchBarComponent = ({ valueSearch, onChangeSearch, placeholder }) => {
+const SearchBarComponent = ({ valueSearch, onChangeSearch }) => {
     return (
         <InputGroup>
             <Input
                 value={valueSearch}
                 onChange={onChangeSearch}
-                placeholder={placeholder}
+                placeholder={'Search'}
                 width={'580px'}
                 height={'40px'}
                 py={'10px'}

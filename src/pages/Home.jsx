@@ -8,6 +8,7 @@ import chatIconActive from '../assets/icons/chat_white.png';
 import renderIcon from '../assets/icons/render.png';
 import renderIconActive from '../assets/icons/render_white.png';
 import BgActive from '../components/BgActive';
+import BoxChat from '../components/chat_component/BoxChat';
 
 const Home = () => {
     const [openQuicks, setOpenQuicks] = useState(false);
@@ -72,6 +73,12 @@ const Home = () => {
                     </>
                 }
             </ButtonGroup>
+            {
+                openChat || openToDo ?
+                <BoxChat />
+                :
+                <></>
+            }
         </Layout>
     );
 }
