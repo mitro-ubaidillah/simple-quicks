@@ -3,6 +3,7 @@ import LayoutBox from '../LayoutBox';
 import HeaderChat from './HeaderChat';
 import ItemFormChat from './ItemFormChat';
 import { Flex } from '@chakra-ui/react';
+import DividerChat from './DividerChat';
 
 const FormChat = () => {
     const name = 'you';
@@ -10,6 +11,7 @@ const FormChat = () => {
         <LayoutBox>
             <HeaderChat />
             <ItemFormChat />
+            <DividerChat />
         </LayoutBox>
     );
 }

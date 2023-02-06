@@ -6,10 +6,12 @@ const ButtonPrimary = ({title}) => {
         <Button
             color={'white'}
             bg={'primary.blue'}
+            fontWeight={'400'}
+            fontSize={'16x'}
+            width={'auto'}
             px={'16px'}
             py={'14px'}
-            fontWeight={'400'}
-            fontSize={'18px'}
+            _hover={{ bg:'hover.blue' }}
         >
             {title}
         </Button>

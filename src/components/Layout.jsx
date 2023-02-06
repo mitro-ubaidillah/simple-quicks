@@ -1,15 +1,17 @@
-import { Stack } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import React from 'react';
 
 const Layout = ({children}) => {
     return (
-        <Stack
-            height={'100vh'}
-            width={'full'}
+        <Box
+            minHeight={'100vh'}
+            maxWidth={'100vw'}
+
             bg={'gray'}
+            overflow={'none'}
         >
             {children}
-        </Stack>
+        </Box>
     );
 }
 
