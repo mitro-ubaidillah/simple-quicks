@@ -6,7 +6,9 @@ const LayoutBox = ({ children, px }) => {
         <Flex
             gap={'22px'}
             width={'650px'}
-            height={'550px'}
+            maxWidth={'650px'}
+            height={'600px'}
+            maxHeight={'600px'}
             bg={'white'}
             px={px}
             py={'20px'}

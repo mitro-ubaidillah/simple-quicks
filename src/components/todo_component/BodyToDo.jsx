@@ -4,7 +4,7 @@ import ButtonIcon from '../ButtonIcon';
 import timeIcon from '../../assets/icons/time.png';
 import editIcon from '../../assets/icons/edit.png';
 
-const BodyToDo = () => {
+const BodyToDo = ({ body, valueDate, onChangeDate, defaultDate }) => {
     return (
         <Box>
             <Flex
@@ -17,10 +17,12 @@ const BodyToDo = () => {
                     <Image src={timeIcon} height={'17px'} />
                 </ButtonIcon>
                 <Input
-                    placeholder="12/06/2021"
                     height={'40px'}
                     type="date"
                     maxWidth={'250px'}
+                    defaultValue={defaultDate}
+                    value={valueDate}
+                    onChange={onChangeDate}
                 />
             </Flex>
             <Flex
@@ -36,7 +38,7 @@ const BodyToDo = () => {
                     color={'primary.dark'}
                     maxWidth={'500px'}
                 >
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem inventore temporibus dolorum harum nobis veritatis consequuntur ex atque architecto necessitatibus id, vel, totam fuga culpa labore, possimus quae fugiat saepe.
+                    {body}
                 </Text>
             </Flex>
         </Box>

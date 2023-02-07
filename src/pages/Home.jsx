@@ -1,5 +1,5 @@
 import { Box, ButtonGroup, Collapse, Image, Slide, SlideFade, Text, useDisclosure } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Layout from '../components/Layout';
 import IconComponent from '../components/IconComponent';
 import logoThunder from '../assets/icons/thunder.png';
@@ -11,12 +11,16 @@ import BgActive from '../components/BgActive';
 import BoxChat from '../components/chat_component/BoxChat';
 import { motion } from 'framer-motion';
 import BoxToDo from '../components/todo_component/BoxToDo';
+import apiToDo from '../services/apiToDo';
+
 
 const Home = () => {
     const [openQuicks, setOpenQuicks] = useState(false);
     const [openChat, setOpenChat] = useState(false);
     const [openToDo, setOpenToDo] = useState(false);
     const { isOpen, onToggle } = useDisclosure();
+    const [loading, setLoading] = useState(true);
+    const [todos, setTodos] = useState([]);
 
     const onOpenQuicks = () => {
         onToggle();
@@ -31,7 +35,21 @@ const Home = () => {
     const onOpenToDO = () => {
         setOpenToDo(!openToDo);
         setOpenChat(false);
+        getAllTodo();
     }
+
+    const getAllTodo = async() => {
+        await apiToDo.getAll()
+            .then(response => {
+                const result = response.data; 
+                setTodos(result);
+            })
+        setLoading(false);
+    }
+
+    // useEffect(() => {
+    //     getAllTodo()
+    // }, [])
 
     return (
         <Layout>
@@ -102,8 +120,8 @@ const Home = () => {
                         >
                             <IconComponent
                                 icon={<Image src={openToDo ? renderIconActive : renderIcon} />}
-                                bg={openToDo ? 'indicators.purple' : 'indicators.white'}
-                                hover={{ bg: openToDo ? 'hover.purple' : 'primary.white' }}
+                                bg={openToDo ? 'indicators.orange' : 'indicators.white'}
+                                hover={{ bg: openToDo ? 'hover.orange' : 'primary.white' }}
                                 onCLickBtnIcon={() => onOpenToDO()}
                             />
                         </SlideFade>
@@ -118,7 +136,7 @@ const Home = () => {
             }
             {
                 openToDo ?
-                <BoxToDo />
+                <BoxToDo todos={todos} isLoading={loading} />
                 :
                 <></>
             }

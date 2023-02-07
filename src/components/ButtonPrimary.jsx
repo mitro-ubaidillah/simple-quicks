@@ -7,7 +7,7 @@ const ButtonPrimary = ({title}) => {
             color={'white'}
             bg={'primary.blue'}
             fontWeight={'400'}
-            fontSize={'16x'}
+            fontSize={'14'}
             width={'auto'}
             px={'16px'}
             py={'14px'}
