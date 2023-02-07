@@ -1,4 +1,4 @@
-import { Box, ButtonGroup, Collapse, Image, Slide, SlideFade, Text, useDisclosure } from '@chakra-ui/react';
+import { Box, ButtonGroup, Image, SlideFade, Text, useDisclosure } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import Layout from '../components/Layout';
 import IconComponent from '../components/IconComponent';
@@ -12,6 +12,7 @@ import BoxChat from '../components/chat_component/BoxChat';
 import { motion } from 'framer-motion';
 import BoxToDo from '../components/todo_component/BoxToDo';
 import apiToDo from '../services/apiToDo';
+import axios from 'axios';
 
 
 const Home = () => {
@@ -21,6 +22,9 @@ const Home = () => {
     const { isOpen, onToggle } = useDisclosure();
     const [loading, setLoading] = useState(true);
     const [todos, setTodos] = useState([]);
+    const [chat, setChat] = useState([]);
+    const [addTodo, setAddTodo] = useState(false);
+    const [typeTodo, setTypeTodo] = useState('mytask');
 
     const onOpenQuicks = () => {
         onToggle();
@@ -35,21 +39,42 @@ const Home = () => {
     const onOpenToDO = () => {
         setOpenToDo(!openToDo);
         setOpenChat(false);
-        getAllTodo();
     }
 
-    const getAllTodo = async() => {
-        await apiToDo.getAll()
+    const getAllTodo = async (todo) => {
+        setLoading(true)
+        let url = `https://quicks.free.beeceptor.com/todos/${todo}`;
+        
+        await axios.get(url)
             .then(response => {
-                const result = response.data; 
-                setTodos(result);
-            })
+            const result = response.data;
+            console.log(result)
+            setTodos(result);
+        })
         setLoading(false);
     }
 
-    // useEffect(() => {
-    //     getAllTodo()
-    // }, [])
+    const getAllChats = async () => {
+        setLoading(true);
+        let url = `https://testapi.io/api/mitro/chat`;
+
+        await axios.get(url)
+            .then(response => {
+                const result = response.data;
+                setChat(result);
+            })
+    }
+
+    const handleChangeTodo = (e) => {
+        setTypeTodo(e);
+    }
+
+    const newTodo = todos.filter((data) => data.type == typeTodo);
+
+    useEffect(() => {
+        // getAllTodo(typeTodo);
+        getAllChats();
+    },[typeTodo]);
 
     return (
         <Layout>
@@ -136,9 +161,16 @@ const Home = () => {
             }
             {
                 openToDo ?
-                <BoxToDo todos={todos} isLoading={loading} />
-                :
-                <></>
+                    <BoxToDo
+                        todos={todos}
+                        isLoading={loading}
+                        onClick={() => setAddTodo(!addTodo)}
+                        input={addTodo}
+                        valueTodo={typeTodo}
+                        onChangeTodo={(e) => handleChangeTodo(e.target.value)}
+                    />
+                    :
+                    <></>
             }
         </Layout>
     );

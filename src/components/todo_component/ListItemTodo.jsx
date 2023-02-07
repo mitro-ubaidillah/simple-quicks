@@ -45,6 +45,7 @@ const ListItemTodo = ({ todos, isLoading, valueDate, onChangeDate }) => {
                                 defaultDate={newDate}
                                 valueDate={valueDate}
                                 onChangeDate={onChangeDate}
+                                bookmark={data?.bookmark}
                             />
                         )
                     }

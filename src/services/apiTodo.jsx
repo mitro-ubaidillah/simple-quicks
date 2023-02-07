@@ -5,9 +5,19 @@ const instance = axios.create({
 });
 
 export default {
-    getAll: () =>
+    getAllMyTask: () =>
         instance({
             method: `GET`,
-            url: `todos`,
-        })
+            url: `todos/mytask`,
+        }),
+    getAllUrgent: () =>
+        instance({
+            method: `GET`,
+            url: `todos/urgent`,
+        }),
+    getAllPersonal: () =>
+        instance({
+            method: `GET`,
+            url: `todos/personal`,
+        }),
 }

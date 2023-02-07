@@ -39,7 +39,8 @@ const theme = extendTheme({
             four: '#AFEBDB',
             five: '#CBF1C2',
             six: '#CFCEF9',
-            seven: '#F9E0FD'
+            seven: '#F9E0FD',
+            last: '#9DD0ED'
         }
     }
 })
