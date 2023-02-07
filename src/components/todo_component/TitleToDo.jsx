@@ -1,45 +1,39 @@
-import { Box, Button, Flex, Image, Text } from '@chakra-ui/react';
+import { Flex, Text } from '@chakra-ui/react';
 import React from 'react';
-import expand from '../../assets/icons/expand.png';
-import more from '../../assets/icons/more_horiz.png';
-import ButtonIcon from '../ButtonIcon';
 
-const TitleToDo = () => {
+const TitleToDo = ({ title, date, remainder, leftDays, completed }) => {
     return (
         <Flex
-            color={'primary.dark'}
             gap={'20px'}
+            width={'full'}
         >
             <Text
+                color={completed ? 'primary.gray' : 'primary.dark'}
                 fontWeight={'700'}
                 fontSize={'14px'}
                 maxWidth={'300px'}
+                minWidth={'300px'}
+                textAlign={'left'}
+                textDecoration={completed ? 'line-through' : 'unset'}
             >
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum vero ipsa molestias
+                {title}
             </Text>
             <Text
                 color={'indicators.red'}
                 fontWeight={'400'}
                 fontSize={'12px'}
+                opacity={leftDays <= 0 ? 0 : 1}
             >
-                2 Days Left
+                {`${remainder} days left`}
             </Text>
             <Text
                 fontWeight={'400'}
                 fontSize={'12px'}
+                textAlign={'right'}
+                color={'primary.dark'}
             >
-                12/06/2021
+                {date}
             </Text>
-            <ButtonIcon
-                py={'5px'}
-            >
-                <Image src={expand} width={'10px'} />
-            </ButtonIcon>
-            <ButtonIcon
-                py={'7px'}
-            >
-                <Image src={more} width={'14px'} />
-            </ButtonIcon>
         </Flex>
     );
 }

@@ -15,6 +15,7 @@ const theme = extendTheme({
         hover: {
             blue: '#215dad',
             purple: '#7372d6',
+            orange: '#dea45f',
         },
         indicators: {
             orange: '#F8B76B',

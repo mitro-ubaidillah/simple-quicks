@@ -9,10 +9,9 @@ const HeaderToDo = () => {
             width={'full'}
             pl={'80px'}
         >
-            <Select placeholder='My Task' maxWidth={'120px'}>
-                <option value='option1'>Option 1</option>
-                <option value='option2'>Option 2</option>
-                <option value='option3'>Option 3</option>
+            <Select placeholder='My Task' maxWidth={'120px'} fontSize={'14px'}>
+                <option value='option1'>Personal Errands</option>
+                <option value='option2'>Urgent To-Do</option>
             </Select>
             <ButtonPrimary title={'New Task'} />
         </Flex>
