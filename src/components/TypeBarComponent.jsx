@@ -7,7 +7,7 @@ const TypeBarComponent = ({ placeholder, valueBar, onChangeBar }) => {
             value={valueBar}
             onChange={onChangeBar}
             placeholder={placeholder}
-            width={'580px'}
+            width={'537px'}
             height={'40px'}
             py={'10px'}
             px={'16px'}
@@ -15,7 +15,6 @@ const TypeBarComponent = ({ placeholder, valueBar, onChangeBar }) => {
             borderRadius={'5px'}
             border={'1px'}
             borderColor={'primary.gray'}
-            {...props}
         />
     );
 }

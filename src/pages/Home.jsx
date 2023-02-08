@@ -11,8 +11,10 @@ import BgActive from '../components/BgActive';
 import BoxChat from '../components/chat_component/BoxChat';
 import { motion } from 'framer-motion';
 import BoxToDo from '../components/todo_component/BoxToDo';
-import apiToDo from '../services/apiToDo';
+import Cookies from 'js-cookies';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { addChats } from '../features/chatSection';
 
 
 const Home = () => {
@@ -22,9 +24,22 @@ const Home = () => {
     const { isOpen, onToggle } = useDisclosure();
     const [loading, setLoading] = useState(true);
     const [todos, setTodos] = useState([]);
-    const [chat, setChat] = useState([]);
+    const [chat, setChat] = useState({});
+    const [allChat, setAllChat] = useState([]);
     const [addTodo, setAddTodo] = useState(false);
     const [typeTodo, setTypeTodo] = useState('mytask');
+    const [openDialog, setOpenDialog] = useState(false);
+    const [idChat, setIdChat] = useState();
+    const dispatch = useDispatch();
+    const chats = useSelector((state) => state.chats);
+
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const dDate = date.getDate();
+
+    const timeNow = `${date.getHours()}:${date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()}`
+    const dateNow = `${dDate < 10 ? `0${dDate}` : dDate}/${month < 10 ? `0${month}` : month}/${year}`;
 
     const onOpenQuicks = () => {
         onToggle();
@@ -34,6 +49,7 @@ const Home = () => {
     const onOpenChat = () => {
         setOpenChat(!openChat);
         setOpenToDo(false);
+        getAllChats();
     }
 
     const onOpenToDO = () => {
@@ -41,16 +57,22 @@ const Home = () => {
         setOpenChat(false);
     }
 
+    const onOpenDialogChat = (id) => {
+        setOpenDialog(!openDialog);
+        setIdChat(id);
+        getChat(id);
+    }
+
     const getAllTodo = async (todo) => {
         setLoading(true)
         let url = `https://quicks.free.beeceptor.com/todos/${todo}`;
-        
+
         await axios.get(url)
             .then(response => {
-            const result = response.data;
-            console.log(result)
-            setTodos(result);
-        })
+                const result = response.data;
+                console.log(result)
+                setTodos(result);
+            })
         setLoading(false);
     }
 
@@ -61,20 +83,47 @@ const Home = () => {
         await axios.get(url)
             .then(response => {
                 const result = response.data;
+                setAllChat(result);
+                result.map((data) => {
+                    data.chats.map((item) => {
+                        dispatch(addChats({
+                            id: data.id,
+                            name: item.name,
+                            message: item.message,
+                            time: item.time,
+                            date: item.date
+                        }));
+                    })
+                })
+            })
+        setLoading(false)
+    }
+
+    const getChat = async(id) => {
+        setLoading(true);
+        let url = `https://testapi.io/api/mitro/chat/${id}`;
+
+        await axios.get(url)
+            .then(response => {
+                const result = response.data;
                 setChat(result);
             })
+        setLoading(false);
     }
+
+    const currentChat = chats.filter((data) => {
+        return data.id == idChat;
+    });
+    console.log(currentChat)
 
     const handleChangeTodo = (e) => {
         setTypeTodo(e);
     }
 
-    const newTodo = todos.filter((data) => data.type == typeTodo);
-
     useEffect(() => {
         // getAllTodo(typeTodo);
-        getAllChats();
-    },[typeTodo]);
+        // getAllChats();
+    }, [typeTodo]);
 
     return (
         <Layout>
@@ -155,7 +204,16 @@ const Home = () => {
             </ButtonGroup>
             {
                 openChat ?
-                    <BoxChat />
+                    <BoxChat
+                        chat={chat}
+                        allChats={allChat}
+                        isLoading={loading}
+                        onClick={(e) => onOpenDialogChat(e)}
+                        dialog={openDialog}
+                        detailChat={currentChat}
+                        onCloseChat={() => setOpenChat(!openChat)}
+                        onBackChat={() => setOpenDialog(!openDialog)}
+                    />
                     :
                     <></>
             }

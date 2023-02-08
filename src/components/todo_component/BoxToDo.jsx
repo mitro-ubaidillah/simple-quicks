@@ -3,7 +3,6 @@ import LayoutBox from '../LayoutBox';
 import HeaderToDo from './HeaderToDo';
 import ListItemTodo from './ListItemTodo';
 import { Box } from '@chakra-ui/layout';
-import InputToDo from './InputToDo';
 import FormToDo from './FormToDo';
 
 const BoxToDo = ({ todos, isLoading, input, onClick, onChangeTodo, valueTodo }) => {

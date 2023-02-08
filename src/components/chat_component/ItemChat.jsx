@@ -3,17 +3,28 @@ import React from 'react';
 import ChatIcon from './ChatIcon';
 import GroupChatIcon from './GroupChatIcon';
 
-const ItemChat = () => {
+const ItemChat = ({ label, currentChat, currentUserName, timeChat, group, onClick, id }) => {
     return (
         <Flex
+            cursor={'pointer'}
+            defaultValue={id}
+            onClick={() => onClick(id)}
             borderBottom={'1px'}
             borderColor={'primary.gray'}
-            pb={'37px'}
+            pb={'32px'}
             width={'full'}
-            templateColumns='repeat(3, 1fr)' 
             gap={'16px'}
         >
-            <GroupChatIcon />
+            {group ?
+                <GroupChatIcon />
+                :
+                <Box
+                    mr={'40px'}
+                    position={'relative'}
+                >
+                    <ChatIcon name={label} left={'10px'} bg={'primary.blue'}/>
+                </Box>
+            }
             <Box
                 maxWidth={'300px'}
             >
@@ -23,7 +34,7 @@ const ItemChat = () => {
                     lineHeight={'none'}
                     mb={'9px'}
                 >
-                    109220-Naturalization sadasdasdasdasdasdadasdasd
+                    {label}
                 </Text>
                 <Text
                     fontWeight={'700'}
@@ -31,22 +42,21 @@ const ItemChat = () => {
                     lineHeight={'none'}
                     mb={'4px'}
                 >
-                    Cameron Philips:
+                    {currentUserName} :
                 </Text>
                 <Text
                     lineHeight={'none'}
                 >
-                    Please check this out!
+                    {currentChat}
                 </Text>
             </Box>
             <Box>
                 <Text
                     lineHeight={'none'}
                 >
-                    January 1, 2021 19:10
+                    {timeChat}
                 </Text>
             </Box>
-            
         </Flex>
     );
 }

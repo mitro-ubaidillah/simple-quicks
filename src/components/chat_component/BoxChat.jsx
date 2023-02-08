@@ -1,22 +1,27 @@
 import React from 'react';
-import LayoutBox from '../LayoutBox';
-import SearchBarComponent from './SearchBarComponent';
-import ItemChat from './ItemChat';
 import FormChat from './FormChat';
 import { Box } from '@chakra-ui/react';
 import ListChatDisplay from './ListChatDisplay';
 
-const BoxChat = () => {
-    const chat = true;
+const BoxChat = ({ chat, allChats, isLoading, onClick, dialog, detailChat, onBackChat, onCloseChat }) => {
     return (
         <Box>
-            {!chat ?
+            {!dialog ?
                 <>
-                    <ListChatDisplay />
+                    <ListChatDisplay
+                        allChats={allChats}
+                        isLoading={isLoading}
+                        onClick={onClick}
+                    />
                 </>
                 :
                 <>
-                    <FormChat />
+                    <FormChat
+                        detailChat={detailChat}
+                        chat={chat}
+                        onBackChat={onBackChat}
+                        onCloseChat={onCloseChat}
+                    />
                 </>
             }
         </Box>
