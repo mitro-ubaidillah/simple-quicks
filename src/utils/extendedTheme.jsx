@@ -40,7 +40,6 @@ const theme = extendTheme({
             five: '#CBF1C2',
             six: '#CFCEF9',
             seven: '#F9E0FD',
-            last: '#9DD0ED'
         }
     }
 })
