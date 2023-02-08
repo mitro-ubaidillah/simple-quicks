@@ -1,4 +1,4 @@
-import { Box, Flex, Grid, GridItem, Image, Stack, Text } from '@chakra-ui/react';
+import { Box, Flex, Image, Text } from '@chakra-ui/react';
 import React from 'react';
 import moreIcon from '../../assets/icons/more_horiz.png';
 
@@ -13,7 +13,7 @@ const ItemFormChat = ({ name, message, timeChat }) => {
         >
             <Text
                 fontWeight={'700'}
-                color={'chats.purple'}
+                color={name == 'You' ? 'chats.purple' : 'chats.orange'}
                 fontSize={'14px'}
                 width={'full'}
                 textAlign={name == 'You' ? 'right' : 'left'}
@@ -26,7 +26,7 @@ const ItemFormChat = ({ name, message, timeChat }) => {
                 gap={'10px'}
             >
                 <Box
-                    bg={'chats.bgPurple'}
+                    bg={name == 'You' ? 'chats.bgPurple' : 'chats.bgOrange'}
                     maxWidth={'450px'}
                     minWidth={'70px'}
                     p={'10px'}
