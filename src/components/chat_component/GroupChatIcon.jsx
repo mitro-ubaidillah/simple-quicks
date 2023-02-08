@@ -7,7 +7,7 @@ const GroupChatIcon = () => {
     return (
         <Box
             position={'relative'}
-            mr={'60px'}
+            mr={'40px'}
         >
             <ChatIcon
                 bg={'primary.blue'}

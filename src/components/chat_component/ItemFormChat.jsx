@@ -2,31 +2,36 @@ import { Box, Flex, Grid, GridItem, Image, Stack, Text } from '@chakra-ui/react'
 import React from 'react';
 import moreIcon from '../../assets/icons/more_horiz.png';
 
-const ItemFormChat = () => {
+const ItemFormChat = ({ name, message, timeChat }) => {
     return (
         <Flex
             wrap={'wrap'}
             width={'full'}
-            px={'19px'}
-            justify={'flex-end'}
+            px={'25px'}
+            justify={name == 'You' ? 'flex-end' : 'flex-start'}
+            mt={'2'}
         >
             <Text
                 fontWeight={'700'}
                 color={'chats.purple'}
                 fontSize={'14px'}
                 width={'full'}
-                textAlign={'right'}
+                textAlign={name == 'You' ? 'right' : 'left'}
             >
-                You
+                {name}
             </Text>
-            <Stack
-                direction={'row-reverse'}
+            <Flex
+                direction={name == 'You' ? 'row-reverse' : 'row'}
+                width={'full'}
+                gap={'10px'}
             >
                 <Box
                     bg={'chats.bgPurple'}
                     maxWidth={'450px'}
+                    minWidth={'70px'}
                     p={'10px'}
                     borderRadius={'md'}
+                    textAlign={name == 'You' ? 'right' : 'left'}
                 >
                     <Text
                         fontWeight={'400'}
@@ -34,7 +39,7 @@ const ItemFormChat = () => {
                         fontSize={'14px'}
                         lineHeight={'18px'}
                     >
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, adipisci, eos neque tempora aliquid, dolor reprehenderit consequatur
+                        {message}
                     </Text>
                     <Text
                         fontSize={'12px'}
@@ -42,7 +47,7 @@ const ItemFormChat = () => {
                         fontWeight={'400'}
                         mt={'12px'}
                     >
-                        09:30
+                        {timeChat}
                     </Text>
                 </Box>
                 <Box
@@ -51,7 +56,7 @@ const ItemFormChat = () => {
                 >
                     <Image src={moreIcon} height={'4px'} />
                 </Box>
-            </Stack>
+            </Flex>
         </Flex>
     );
 }

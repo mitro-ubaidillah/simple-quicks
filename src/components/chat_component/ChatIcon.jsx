@@ -1,7 +1,7 @@
 import { Avatar, Box } from '@chakra-ui/react';
 import React from 'react';
 
-const ChatIcon = ({ bg, top, left, index, icon }) => {
+const ChatIcon = ({ bg, top, left, index, icon, name }) => {
     return (
         <Avatar
             width={'34px'}
@@ -12,6 +12,7 @@ const ChatIcon = ({ bg, top, left, index, icon }) => {
             left={left}
             zIndex={index}
             icon={icon}
+            name={name}
         />
     );
 }

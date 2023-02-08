@@ -5,7 +5,7 @@ import BodyToDo from './BodyToDo';
 import ButtonIcon from '../ButtonIcon';
 import more from '../../assets/icons/more_horiz.png';
 
-const ItemToDo = ({ titleTodo, bodyTodo, date, remainder, leftDays, completed, onChangeDate, valueDate, defaultDate }) => {
+const ItemToDo = ({ titleTodo, bodyTodo, date, remainder, leftDays, completed, onChangeDate, valueDate, defaultDate, bookmark }) => {
     return (
         <Flex
             borderBottom={'1px'}
@@ -41,9 +41,8 @@ const ItemToDo = ({ titleTodo, bodyTodo, date, remainder, leftDays, completed, o
                             </ButtonIcon>
                         </Box>
                     </Flex>
-
                     <AccordionPanel pb={4}>
-                        <BodyToDo body={bodyTodo} onChangeDate={onChangeDate} valueDate={valueDate} defaultDate={defaultDate} />
+                        <BodyToDo body={bodyTodo} onChangeDate={onChangeDate} valueDate={valueDate} defaultDate={defaultDate} bookmark={bookmark} />
                     </AccordionPanel>
                 </AccordionItem>
             </Accordion>

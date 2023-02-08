@@ -1,7 +1,7 @@
 import { Button } from '@chakra-ui/react';
 import React from 'react';
 
-const ButtonPrimary = ({title}) => {
+const ButtonPrimary = ({ title, onClick }) => {
     return (
         <Button
             color={'white'}
@@ -11,7 +11,8 @@ const ButtonPrimary = ({title}) => {
             width={'auto'}
             px={'16px'}
             py={'14px'}
-            _hover={{ bg:'hover.blue' }}
+            _hover={{ bg: 'hover.blue' }}
+            onClick={onClick}
         >
             {title}
         </Button>

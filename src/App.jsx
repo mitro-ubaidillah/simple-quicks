@@ -4,16 +4,16 @@ import theme from './utils/ExtendedTheme'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
 import { ChakraProvider } from '@chakra-ui/react'
+import { Provider } from "react-redux";
+import store from '../store'
 
 function App() {
   return (
-    <BrowserRouter>
+    <Provider store={store}>
       <ChakraProvider theme={theme}>
-        <Routes>
-          <Route path='/' element={<Home />} />
-        </Routes>
+        <Home />
       </ChakraProvider>
-    </BrowserRouter>
+    </Provider>
   )
 }
 
