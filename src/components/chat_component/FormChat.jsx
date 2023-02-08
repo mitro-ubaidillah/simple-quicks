@@ -7,7 +7,7 @@ import DividerChat from './DividerChat';
 import TypeBarComponent from '../TypeBarComponent';
 import ButtonPrimary from '../ButtonPrimary';
 
-const FormChat = ({ chat, detailChat, onBackChat, onCloseChat }) => {
+const FormChat = ({ chat, detailChat, onBackChat, onCloseChat, onSendChat, valueNewMessage, onChangeNewMessage }) => {
     return (
         <LayoutBox>
             <HeaderChat
@@ -52,8 +52,8 @@ const FormChat = ({ chat, detailChat, onBackChat, onCloseChat }) => {
                 left={'20px'}
                 gap={'13px'}
             >
-                <TypeBarComponent placeholder={'Type a new message'} />
-                <ButtonPrimary title={'Send'} />
+                <TypeBarComponent placeholder={'Type a new message'} valueBar={valueNewMessage} onChangeBar={onChangeNewMessage}/>
+                <ButtonPrimary title={'Send'} onClick={onSendChat} />
             </Flex>
             {/* <DividerChat /> */}
         </LayoutBox>

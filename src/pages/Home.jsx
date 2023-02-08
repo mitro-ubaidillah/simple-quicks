@@ -28,6 +28,7 @@ const Home = () => {
     const [allChat, setAllChat] = useState([]);
     const [addTodo, setAddTodo] = useState(false);
     const [typeTodo, setTypeTodo] = useState('mytask');
+    const [newMessage, setNewMessage] = useState('');
     const [openDialog, setOpenDialog] = useState(false);
     const [idChat, setIdChat] = useState();
     const dispatch = useDispatch();
@@ -61,6 +62,16 @@ const Home = () => {
         setOpenDialog(!openDialog);
         setIdChat(id);
         getChat(id);
+    }
+
+    const handleOnSendChat = () => {
+        dispatch(addChats({
+            id: idChat,
+            name: 'You',
+            message: newMessage,
+            date: dateNow,
+            time: timeNow,
+        }))
     }
 
     const getAllTodo = async (todo) => {
@@ -114,15 +125,13 @@ const Home = () => {
     const currentChat = chats.filter((data) => {
         return data.id == idChat;
     });
-    console.log(currentChat)
 
     const handleChangeTodo = (e) => {
         setTypeTodo(e);
     }
 
     useEffect(() => {
-        // getAllTodo(typeTodo);
-        // getAllChats();
+        getAllTodo(typeTodo);
     }, [typeTodo]);
 
     return (
@@ -213,6 +222,9 @@ const Home = () => {
                         detailChat={currentChat}
                         onCloseChat={() => setOpenChat(!openChat)}
                         onBackChat={() => setOpenDialog(!openDialog)}
+                        onSendChat={() => handleOnSendChat()}
+                        onChangeNewMessage={(e) => setNewMessage(e.target.value)}
+                        valueNewMessage={newMessage}
                     />
                     :
                     <></>
