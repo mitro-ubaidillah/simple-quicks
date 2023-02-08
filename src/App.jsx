@@ -1,6 +1,6 @@
 import '@fontsource/lato/400.css'
 import '@fontsource/lato/700.css'
-import theme from './utils/ExtendedTheme'
+import theme from './utils/extendedTheme'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
 import { ChakraProvider } from '@chakra-ui/react'
